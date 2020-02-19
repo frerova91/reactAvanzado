@@ -3,10 +3,9 @@ import { PhotoCard } from "../PhotoCard/index";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
-//HAY CAMBIOS EN LA ULTIMA VERSION DE APOLLO ASI QUE HAY QUE HACER CAMBIO PARA QUE FUNCIONE
-const WITH_PHOTOS = gql`
-  query getPhotos {
-    photos {
+const withPhotos = gql`
+  query getPhotos($categoryId: ID) {
+    photos(categoryId: $categoryId) {
       id
       categoryId
       src
@@ -17,8 +16,10 @@ const WITH_PHOTOS = gql`
   }
 `;
 
-export const ListOfPhotoCards = () => {
-  const { loading, error, data } = useQuery(WITH_PHOTOS);
+export const ListOfPhotoCards = ({ categoryId }) => {
+  const { loading, error, data } = useQuery(withPhotos, {
+    variables: { categoryId }
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :</p>;
@@ -31,17 +32,3 @@ export const ListOfPhotoCards = () => {
     </ul>
   );
 };
-
-/*
-const ListOfPhotoCardsComponent = ({ data: { photos = [] } } = {}) => {
-  return (
-    <ul>
-      {photos.map(photo => (
-        <PhotoCard key={photo.id} {...photo} />
-      ))}
-    </ul>
-  );
-};
-
-//este patron se le llama un componente de orden superior
-export const ListOfPhotoCards = withPhotos(ListOfPhotoCardsComponent); */
