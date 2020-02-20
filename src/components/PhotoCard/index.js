@@ -3,6 +3,7 @@ import { Article, ImgWrapper, Img } from "./styles";
 import { useLocalStorage } from "../../components/hooks/useLocalStorage";
 import { useNearScreen } from "../../components/hooks/useNearScreen";
 import { ToggleLikeMutation } from "../containers/ToggleLikeMutation";
+import { Link } from "@reach/router";
 import { FavButton } from "../FavButton";
 
 const DEFAULT_IMAGE =
@@ -17,11 +18,11 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
     <Article ref={element}>
       {show && (
         <Fragment>
-          <a href={`/?detail=${id}`}>
+          <Link to={`/detail/${id}`}>
             <ImgWrapper>
               <Img src={src} />
             </ImgWrapper>
-          </a>
+          </Link>
 
           <ToggleLikeMutation>
             {toggleLike => {
