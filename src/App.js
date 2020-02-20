@@ -8,6 +8,7 @@ import { User } from "./pages/User";
 import { Home } from "./pages/Home";
 import { Logo } from "./components/Logo";
 import { NavBar } from "./components/NavBar";
+import Context from "./Context";
 
 const UserLogged = ({ children }) => {
   return children({ isAuth: false }); //HARD CODE STATUS
@@ -23,8 +24,7 @@ export const App = () => {
         <Home path={"/pet/:id"} />
         <Detail path={"/detail/:detailId"} />
       </Router>
-
-      <UserLogged>
+      <Context.Consumer>
         {({ isAuth }) =>
           isAuth ? (
             <Router>
@@ -38,7 +38,7 @@ export const App = () => {
             </Router>
           )
         }
-      </UserLogged>
+      </Context.Consumer>
       <NavBar />
     </div>
   );
