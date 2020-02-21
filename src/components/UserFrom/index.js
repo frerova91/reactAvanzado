@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { useInputValue } from "../hooks/useImputValue";
-import { Error, Form, Input, Button, Title } from "./style";
+import { SubmitButton } from "../SubmitButton";
+import { Error, Form, Input, Title } from "./style";
 
 export const UserForm = ({ error, disabled, onSubmit, title }) => {
   const email = useInputValue("");
@@ -25,7 +26,7 @@ export const UserForm = ({ error, disabled, onSubmit, title }) => {
           type="password"
           {...password}
         />
-        <Button disabled={disabled}>{title}</Button>
+        <SubmitButton disabled={disabled}>{title}</SubmitButton>
       </Form>
       {error && <Error>{error}</Error>}
     </Fragment>
