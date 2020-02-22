@@ -3,7 +3,7 @@ import { ListOfCategories } from "../components/ListOfCategories";
 import { ListOfPhotoCards } from "../components/ListOfPhotoCards";
 import { Layout } from "../components/Layout";
 
-const HomePage = ({ categoryId }) => {
+export default ({ categoryId }) => {
   return (
     <Layout
       title="Tu app de fotos de mascotas"
@@ -15,6 +15,6 @@ const HomePage = ({ categoryId }) => {
   );
 };
 
-export const Home = React.memo(HomePage, (prevProps, props) => {
+/* export const Home = React.memo(HomePage, (prevProps, props) => {
   return prevProps.categoryId === props.categoryId;
-});
+}); */
